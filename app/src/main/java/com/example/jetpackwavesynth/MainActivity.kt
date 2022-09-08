@@ -97,12 +97,12 @@ private fun ControlsPanel(
                     .fillMaxWidth()
                     .padding(0.dp, 32.dp),
             ) {
-               Row (
-                   modifier = Modifier.padding(0.dp,12.dp)
-                       ){
-                   Text("FREQUENCY")
+                Row(
+                    modifier = Modifier.padding(0.dp, 12.dp)
+                ) {
+                    Text("FREQUENCY")
 
-               }
+                }
 
                 PitchControl(modifier)
 
@@ -120,9 +120,9 @@ private fun ControlsPanel(
                     .fillMaxWidth()
                     .padding(0.dp, 32.dp),
             ) {
-                Row (
-                    modifier = Modifier.padding(0.dp,12.dp)
-                ){
+                Row(
+                    modifier = Modifier.padding(0.dp, 12.dp)
+                ) {
                     Text("VOLUME")
 
                 }
@@ -218,7 +218,11 @@ private fun PitchControlContent(
         modifier = modifier,
         value = value,
         onValueChange = onValueChange,
-        valueRange = valueRange
+        valueRange = valueRange,
+        colors = SliderDefaults.colors(
+            thumbColor = MaterialTheme.colors.primary,
+            activeTrackColor = MaterialTheme.colors.secondary
+        )
     )
     Row(
         modifier = modifier,
@@ -269,7 +273,12 @@ private fun VolumeControlContent(
             onValueChange = onValueChange,
             modifier = modifier,
 
-            valueRange = volumeRange
+            valueRange = volumeRange,
+
+            colors = SliderDefaults.colors(
+                thumbColor = MaterialTheme.colors.primary,
+                activeTrackColor = MaterialTheme.colors.secondary
+            )
         )
 
 
