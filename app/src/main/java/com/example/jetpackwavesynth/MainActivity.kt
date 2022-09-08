@@ -1,28 +1,33 @@
 package com.example.jetpackwavesynth
 
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.VolumeMute
-import androidx.compose.material.icons.filled.VolumeUp
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.jetpackwavesynth.ui.theme.JetpackWaveSynthTheme
+import com.google.accompanist.systemuicontroller.SystemUiController
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            val systemUiController: SystemUiController = rememberSystemUiController()
+
+            systemUiController.isSystemBarsVisible = false // Status & Navigation bars
+            systemUiController.setNavigationBarColor(Color.Transparent)
+
             JetpackWaveSynthTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
@@ -39,13 +44,19 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun WavetableSynthesizerApp(
+
+
     modifier: Modifier
 ) {
+
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(32.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Top,
-    ) {
+        verticalArrangement = Arrangement.SpaceEvenly,
+
+        ) {
         // These two composables will be shortly defined
         WavetableSelectionPanel(modifier)
         ControlsPanel(modifier)
@@ -56,55 +67,79 @@ fun WavetableSynthesizerApp(
 private fun WavetableSelectionPanel(
     modifier: Modifier
 ) {
-    Row(
-        modifier = modifier
+
+    Column(
+        modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight(0.5f),
-        horizontalArrangement = Arrangement.SpaceEvenly,
-        verticalAlignment = Alignment.CenterVertically
+            .padding(0.dp, 32.dp),
     ) {
-        Column(
-            modifier = modifier
-                .fillMaxWidth()
-                .fillMaxHeight(),
-            verticalArrangement = Arrangement.SpaceEvenly,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text("Wavetable selection panel")
-            WavetableSelectionButtons(modifier)
-        }
+        Text("WAVETABLE")
+        WavetableSelectionButtons(modifier)
     }
+
 }
 
 @Composable
 private fun ControlsPanel(
     modifier: Modifier
 ) {
-    Row(
-        modifier = modifier
+    Column(
+        modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight(),
-        horizontalArrangement = Arrangement.Center,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Column(
-            modifier = modifier
-                .fillMaxHeight()
-                .fillMaxWidth(0.7f), horizontalAlignment = Alignment.CenterHorizontally
+
         ) {
-            PitchControl(modifier)
-            PlayControl(modifier)
-        }
-        Column(
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = modifier
+
+        Row(
+            modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxHeight(),
         ) {
-            VolumeControl(modifier)
+
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(0.dp, 32.dp),
+            ) {
+                Text("FREQUENCY")
+
+                PitchControl(modifier)
+
+
+            }
+
+
         }
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(0.dp, 32.dp),
+            ) {
+                Text("VOLUME")
+
+                VolumeControl(modifier)
+
+            }
+
+        }
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(0.dp, 32.dp),
+            horizontalArrangement = Arrangement.SpaceAround,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+
+            PlayControl(modifier)
+
+
+        }
+
     }
+
 }
 
 
@@ -113,10 +148,15 @@ private fun WavetableSelectionButtons(
     modifier: Modifier
 ) {
     Row(
-        modifier = modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceEvenly
+
+
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(0.dp, 32.dp),
+        horizontalArrangement = Arrangement.SpaceBetween
+
     ) {
-        for (wavetable in arrayOf("Sine", "Triangle", "Square", "Saw")) {
+        for (wavetable in arrayOf("SINE", "TRIANGLE", "SQUARE", "SAW")) {
             WavetableButton(
                 modifier = modifier,
                 onClick = {},
@@ -146,7 +186,7 @@ private fun PitchControl(
 
     PitchControlContent(
         modifier = modifier,
-        pitchControlLabel = stringResource(R.string.frequency),
+
         value = sliderPosition.value,
         onValueChange = {
             sliderPosition.value = it
@@ -162,13 +202,11 @@ private fun PitchControl(
 @Composable
 private fun PitchControlContent(
     modifier: Modifier,
-    pitchControlLabel: String,
     value: Float,
     onValueChange: (Float) -> Unit,
     valueRange: ClosedFloatingPointRange<Float>,
     frequencyValueLabel: String
 ) {
-    Text(pitchControlLabel, modifier = modifier)
     Slider(
         modifier = modifier,
         value = value,
@@ -186,6 +224,7 @@ private fun PitchControlContent(
 @Composable
 private fun PlayControl(modifier: Modifier) {
     Button(modifier = modifier,
+
         onClick = {}) {
         Text(stringResource(R.string.play))
     }
@@ -210,27 +249,23 @@ private fun VolumeControlContent(
     volumeRange: ClosedFloatingPointRange<Float>,
     onValueChange: (Float) -> Unit
 ) {
-    // The volume slider should take around 1/4 of the screen height
-    val screenHeight = LocalConfiguration.current.screenHeightDp
-    val sliderHeight = screenHeight / 4
 
 
     Row(
         modifier = modifier,
         horizontalArrangement = Arrangement.Center
     ) {
-        Icon(imageVector = Icons.Filled.VolumeUp, contentDescription = null)
 
 
         Slider(
             value = volume,
             onValueChange = onValueChange,
-            modifier = modifier
-                .width(sliderHeight.dp),
+            modifier = modifier,
+
             valueRange = volumeRange
         )
 
-        Icon(imageVector = Icons.Filled.VolumeMute, contentDescription = null)
+
     }
 
 }

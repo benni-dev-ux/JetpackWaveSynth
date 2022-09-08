@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">JetpackWaveSynth</string>
-    <string name="play">Play</string>
-    <string name="frequency">Frequency</string>
+    <string name="play">PLAY</string>
+    <string name="frequency">FREQUENCY</string>
     <string name="frequency_value">%.1f Hz</string>
 
 </resources>

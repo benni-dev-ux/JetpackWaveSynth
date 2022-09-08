@@ -2,13 +2,14 @@ package com.example.jetpackwavesynth.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple200 = Color(0xFFBB86FC)
-val Purple500 = Color(0xFF6200EE)
-val Purple700 = Color(0xFF3700B3)
-val Teal200 = Color(0xFF03DAC5)
 
 
+val CustomYellow = Color(0xFFFFD600)
+val CustomDarkYellow = Color(0xFFC7A500)
+val CustomBrightYellow = Color(0xFFFFFF52)
+val CustomDarkBackground = Color(0xFF212121)
 
-val CustomOrange = Color(0xFFEF7600)
-val CustomDarkOrange = Color(0xFF854200)
-val CustomGray = Color(0xFF7C7C7C)
+val CustomGreen = Color(0xFF26A69A)
+val CustomDarkGreen = Color(0xFF00766C)
+val CustomBrightGreen = Color(0xFF64D8CB)
+val CustomLightBackground = Color(0xFFFAFAFA)
