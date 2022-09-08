@@ -1,7 +1,6 @@
 package com.example.jetpackwavesynth
 
 
-import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -12,7 +11,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.jetpackwavesynth.ui.theme.JetpackWaveSynthTheme
@@ -26,7 +24,6 @@ class MainActivity : ComponentActivity() {
             val systemUiController: SystemUiController = rememberSystemUiController()
 
             systemUiController.isSystemBarsVisible = false // Status & Navigation bars
-            systemUiController.setNavigationBarColor(Color.Transparent)
 
             JetpackWaveSynthTheme {
                 // A surface container using the 'background' color from the theme
@@ -100,7 +97,12 @@ private fun ControlsPanel(
                     .fillMaxWidth()
                     .padding(0.dp, 32.dp),
             ) {
-                Text("FREQUENCY")
+               Row (
+                   modifier = Modifier.padding(0.dp,12.dp)
+                       ){
+                   Text("FREQUENCY")
+
+               }
 
                 PitchControl(modifier)
 
@@ -118,7 +120,12 @@ private fun ControlsPanel(
                     .fillMaxWidth()
                     .padding(0.dp, 32.dp),
             ) {
-                Text("VOLUME")
+                Row (
+                    modifier = Modifier.padding(0.dp,12.dp)
+                ){
+                    Text("VOLUME")
+
+                }
 
                 VolumeControl(modifier)
 
@@ -172,7 +179,7 @@ private fun WavetableButton(
     onClick: () -> Unit,
     label: String,
 ) {
-    Button(modifier = modifier, onClick = onClick) {
+    OutlinedButton(modifier = modifier, onClick = onClick) {
         Text(label)
     }
 }
@@ -223,7 +230,7 @@ private fun PitchControlContent(
 
 @Composable
 private fun PlayControl(modifier: Modifier) {
-    Button(modifier = modifier,
+    Button(modifier = modifier.width(300.dp),
 
         onClick = {}) {
         Text(stringResource(R.string.play))
