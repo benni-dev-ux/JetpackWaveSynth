@@ -3,7 +3,6 @@ package com.example.jetpackwavesynth.ui.theme
 import androidx.compose.ui.graphics.Color
 
 
-
 val CustomYellow = Color(0xFFFFD600)
 val CustomDarkYellow = Color(0xFFC7A500)
 val CustomBrightYellow = Color(0xFFFFFF52)

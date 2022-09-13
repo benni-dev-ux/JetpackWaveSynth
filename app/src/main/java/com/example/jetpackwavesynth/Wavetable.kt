@@ -1,25 +1,25 @@
 package com.example.jetpackwavesynth
 
 enum class Wavetable {
-    SINE{
+    SINE {
         override fun toResourceString(): Int {
             return R.string.sine
         }
     },
 
-    TRIANGLE{
+    TRIANGLE {
         override fun toResourceString(): Int {
             return R.string.triangle
         }
     },
 
-    SQUARE{
+    SQUARE {
         override fun toResourceString(): Int {
             return R.string.square
         }
     },
 
-    SAW{
+    SAW {
         override fun toResourceString(): Int {
             return R.string.sawtooth
         }

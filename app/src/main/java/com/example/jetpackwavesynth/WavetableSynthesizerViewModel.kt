@@ -107,14 +107,13 @@ class WavetableSynthesizerViewModel : ViewModel() {
 
 
     fun applyParameters() {
-        viewModelScope.launch{
+        viewModelScope.launch {
             wavetableSynthesizer?.setFrequency(frequency.value!!) //!! Operator assures not null
             wavetableSynthesizer?.setVolume(volume.value!!)
             wavetableSynthesizer?.setWavetable(wavetable)
             updatePlayButtonLabel()
         }
     }
-
 
 
     // Companion object for conversion similar to static  java class
