@@ -4,4 +4,13 @@
     <string name="frequency">FREQUENCY</string>
     <string name="frequency_value">%.1f Hz</string>
 
+
+    <string name="sine">SINE</string>
+    <string name="triangle">TRIANGLE</string>
+    <string name="square">SQUARE</string>
+    <string name="sawtooth">SAW</string>
+
+    <string name="stop">Stop</string>
+
+
 </resources>
