@@ -19,9 +19,10 @@ import androidx.compose.ui.unit.dp
 import com.example.jetpackwavesynth.ui.theme.JetpackWaveSynthTheme
 import com.google.accompanist.systemuicontroller.SystemUiController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.thewolfsound.wavetablesynthesizer.NativeWavetableSynthesizer
 
 class MainActivity : ComponentActivity() {
-    private val synthesizer = LoggingWavetableSynthesizer()
+    private val synthesizer = NativeWavetableSynthesizer
     private val synthesizerViewModel: WavetableSynthesizerViewModel by viewModels()
 
 
@@ -30,7 +31,6 @@ class MainActivity : ComponentActivity() {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
 
-        // pass the synthesizer to the ViewModel
         synthesizerViewModel.wavetableSynthesizer = synthesizer
         setContent {
             val systemUiController: SystemUiController = rememberSystemUiController()
